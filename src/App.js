@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
+import Chance from "chance";
 import { GiExecutionerHood } from "react-icons/gi";
 import "./App.css";
+
+const chance = new Chance();
+const names = ["Jim", "Kim", "Glim", "Slim", "Grim", "Tim"];
 
 function App() {
   return (
@@ -69,7 +73,12 @@ function Model({ model, deleteModel }) {
 
 function randomModel() {
   var key = "model-" + nanoid();
-  return { key: key, id: key, name: "Glim", strength: 1 };
+  return {
+    key: key,
+    id: key,
+    name: chance.pickone(names),
+    strength: chance.d20(),
+  };
 }
 
 export default App;
