@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import Chance from "chance";
 import { GiExecutionerHood } from "react-icons/gi";
+import { RxDragHandleDots2 } from "react-icons/rx";
 import "./App.css";
 
 const chance = new Chance();
@@ -59,10 +60,50 @@ function Roster({ models, deleteModel }) {
 }
 
 function Model({ model, deleteModel }) {
+  const [dragId, setDragId] = useState();
+
+  const handleDrag = (ev) => {
+    console.log("DRAG");
+    console.log(ev);
+    setDragId(ev.currentTarget.id);
+  };
+
+  const handleDrop = (ev) => {
+    console.log("DROP source");
+    console.log(dragId);
+    console.log("DROP target");
+    console.log(ev.currentTarget.id);
+  };
+
   return (
-    <div className="Model" key={model.key} id={model.id}>
-      <div>name: {model.name}</div>
-      <div>strength: {model.strength}</div>
+    <div>
+      <div className="Model" key={model.key} id={model.id}>
+        <div>name: {model.name}</div>
+        <Stat
+          model={model}
+          stat="agility"
+          handleDrag={handleDrag}
+          handleDrop={handleDrop}
+        />
+        <Stat
+          model={model}
+          stat="presence"
+          handleDrag={handleDrag}
+          handleDrop={handleDrop}
+        />
+        <Stat
+          model={model}
+          stat="strength"
+          handleDrag={handleDrag}
+          handleDrop={handleDrop}
+        />
+        <Stat
+          model={model}
+          stat="toughness"
+          handleDrag={handleDrag}
+          handleDrop={handleDrop}
+        />
+      </div>
       <button onClick={() => deleteModel(model.id)}>
         <GiExecutionerHood /> delete
       </button>
@@ -71,13 +112,38 @@ function Model({ model, deleteModel }) {
   );
 }
 
+function Stat({ model, stat, handleDrag, handleDrop }) {
+  return (
+    <div>
+      {stat}:{" "}
+      <span
+        draggable={true}
+        id={stat + "-" + model.key}
+        onDragOver={(ev) => ev.preventDefault()}
+        onDragStart={handleDrag}
+        onDrop={handleDrop}
+      >
+        {model.stats[stat]}
+        <RxDragHandleDots2 />
+      </span>
+    </div>
+  );
+}
+
 function randomModel() {
   var key = "model-" + nanoid();
+  var statline = chance.shuffle([3, 1, 0, -3]);
+
   return {
     key: key,
     id: key,
     name: chance.pickone(names),
-    strength: chance.d20(),
+    stats: {
+      agility: statline[0],
+      presence: statline[1],
+      strength: statline[2],
+      toughness: statline[3],
+    },
   };
 }
 
