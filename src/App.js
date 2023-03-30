@@ -37,18 +37,35 @@ function Sheet() {
     setModels(models.filter((m) => m.id !== id));
   }
 
+  function statSwap(id, target, source) {
+    setModels(
+      models.map((model) => {
+        if (model.id === id) {
+          const temp = model.stats[target];
+          model.stats[target] = model.stats[source];
+          model.stats[source] = temp;
+          return model;
+        } else {
+          return model;
+        }
+      })
+    );
+  }
+
   return (
     <div className="Sheet">
       [sheet]
       <button onClick={addRandomModel}>random</button>
-      <Roster models={models} deleteModel={deleteModel} />
+      <Roster models={models} deleteModel={deleteModel} statSwap={statSwap} />
     </div>
   );
 }
 
-function Roster({ models, deleteModel }) {
+function Roster({ models, deleteModel, statSwap }) {
   const foo = models.map((model) => {
-    return <Model model={model} deleteModel={deleteModel} />;
+    return (
+      <Model model={model} deleteModel={deleteModel} statSwap={statSwap} />
+    );
   });
 
   return (
@@ -59,20 +76,17 @@ function Roster({ models, deleteModel }) {
   );
 }
 
-function Model({ model, deleteModel }) {
+function Model({ model, deleteModel, statSwap }) {
   const [dragId, setDragId] = useState();
 
   const handleDrag = (ev) => {
-    console.log("DRAG");
-    console.log(ev);
     setDragId(ev.currentTarget.id);
   };
 
   const handleDrop = (ev) => {
-    console.log("DROP source");
-    console.log(dragId);
-    console.log("DROP target");
-    console.log(ev.currentTarget.id);
+    const target = ev.currentTarget.id.split("-")[0];
+    const source = dragId.split("-")[0];
+    statSwap(model.id, target, source);
   };
 
   return (
