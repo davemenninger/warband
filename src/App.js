@@ -44,6 +44,8 @@ function Sheet() {
           const temp = model.stats[target];
           model.stats[target] = model.stats[source];
           model.stats[source] = temp;
+          model.move = model.stats["agility"] + 5;
+          model.hp = model.stats["toughness"] + 8;
           return model;
         } else {
           return model;
@@ -64,7 +66,12 @@ function Sheet() {
 function Roster({ models, deleteModel, statSwap }) {
   const foo = models.map((model) => {
     return (
-      <Model model={model} deleteModel={deleteModel} statSwap={statSwap} />
+      <Model
+        key={model.key}
+        model={model}
+        deleteModel={deleteModel}
+        statSwap={statSwap}
+      />
     );
   });
 
@@ -93,6 +100,8 @@ function Model({ model, deleteModel, statSwap }) {
     <div>
       <div className="Model" key={model.key} id={model.id}>
         <div>name: {model.name}</div>
+        <div>HP: {model.hp}</div>
+        <div>Move: {model.move}</div>
         <Stat
           model={model}
           stat="agility"
@@ -146,7 +155,8 @@ function Stat({ model, stat, handleDrag, handleDrop }) {
 
 function randomModel() {
   var key = "model-" + nanoid();
-  var statline = chance.shuffle([3, 1, 0, -3]);
+  var statline = chance.pickone([chance.shuffle([3, 1, 0, -3]),chance.shuffle([2, 2, -1, -2])
+  ]);
 
   return {
     key: key,
@@ -158,6 +168,8 @@ function randomModel() {
       strength: statline[2],
       toughness: statline[3],
     },
+    hp: statline[3] + 8,
+    move: statline[0] + 5,
   };
 }
 
