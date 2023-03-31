@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import Chance from "chance";
-import { GiExecutionerHood } from "react-icons/gi";
+import {
+  GiAvoidance,
+  GiCharacter,
+  GiExecutionerHood,
+  GiHealthPotion,
+  GiPsychicWaves,
+  GiStoneBlock,
+  GiStrong,
+  GiWalkingBoot,
+} from "react-icons/gi";
 import { RxDragHandleDots2 } from "react-icons/rx";
 import "./App.css";
 
@@ -56,8 +65,8 @@ function Sheet() {
 
   return (
     <div className="Sheet">
-      [sheet]
-      <button onClick={addRandomModel}>random</button>
+      <h2>Warband Name</h2>
+      <button onClick={addRandomModel}>add a random member</button>
       <Roster models={models} deleteModel={deleteModel} statSwap={statSwap} />
     </div>
   );
@@ -77,7 +86,7 @@ function Roster({ models, deleteModel, statSwap }) {
 
   return (
     <div className="Roster">
-      [roster]
+      <h3>Members</h3>
       {foo}
     </div>
   );
@@ -99,28 +108,38 @@ function Model({ model, deleteModel, statSwap }) {
   return (
     <div>
       <div className="Model" key={model.key} id={model.id}>
-        <div>name: {model.name}</div>
-        <div>HP: {model.hp}</div>
-        <div>Move: {model.move}</div>
+        <div>
+          <GiCharacter /> Name: {model.name}
+        </div>
+        <div>
+          <GiHealthPotion /> HP: {model.hp}
+        </div>
+        <div>
+          <GiWalkingBoot /> Move: {model.move}
+        </div>
         <Stat
+          icon=<GiAvoidance />
           model={model}
           stat="agility"
           handleDrag={handleDrag}
           handleDrop={handleDrop}
         />
         <Stat
+          icon=<GiPsychicWaves />
           model={model}
           stat="presence"
           handleDrag={handleDrag}
           handleDrop={handleDrop}
         />
         <Stat
+          icon=<GiStrong />
           model={model}
           stat="strength"
           handleDrag={handleDrag}
           handleDrop={handleDrop}
         />
         <Stat
+          icon=<GiStoneBlock />
           model={model}
           stat="toughness"
           handleDrag={handleDrag}
@@ -135,11 +154,13 @@ function Model({ model, deleteModel, statSwap }) {
   );
 }
 
-function Stat({ model, stat, handleDrag, handleDrop }) {
+function Stat({ model, stat, icon, handleDrag, handleDrop }) {
   return (
     <div>
+      {icon}
       {stat}:{" "}
       <span
+        className="dragHandle"
         draggable={true}
         id={stat + "-" + model.key}
         onDragOver={(ev) => ev.preventDefault()}
@@ -155,7 +176,9 @@ function Stat({ model, stat, handleDrag, handleDrop }) {
 
 function randomModel() {
   var key = "model-" + nanoid();
-  var statline = chance.pickone([chance.shuffle([3, 1, 0, -3]),chance.shuffle([2, 2, -1, -2])
+  var statline = chance.pickone([
+    chance.shuffle([3, 1, 0, -3]),
+    chance.shuffle([2, 2, -1, -2]),
   ]);
 
   return {
