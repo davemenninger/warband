@@ -3,6 +3,8 @@ import { useDraggable } from "@dnd-kit/core";
 import { RxDragHandleDots2 } from "react-icons/rx";
 
 function Stat({ model, stat, icon }) {
+  const stats = model.state.stats;
+
   const stat_id = stat + "-" + model.key;
   const { isOver, setNodeRef } = useDroppable({
     id: stat_id,
@@ -17,7 +19,7 @@ function Stat({ model, stat, icon }) {
       {stat}:{" "}
       <StatValue
         stat_id={stat_id}
-        score={model.stats[stat]}
+        score={stats[stat]}
       />
     </div>
   );

@@ -1,6 +1,8 @@
 import "./App.css";
 import Sheet from "./Sheet.js";
 
+const {version} = require('../package.json');
+
 function App() {
   return (
     <div className="App">
@@ -9,6 +11,7 @@ function App() {
         <h1>Forbidden Psalm Warband Manager</h1>
         <Sheet />
       </header>
+      <div>{version}</div>
     </div>
   );
 }
