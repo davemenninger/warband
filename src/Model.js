@@ -101,7 +101,7 @@ class Model extends React.Component {
         <WeaponsBlock model={this} />
         <EquipmentBlock model={this} />
         <button onClick={() => this.props.deleteModel(this.props.signature)}>
-          <GiExecutionerHood /> delete
+          <GiExecutionerHood /> delete {this.state.name}
         </button>
         <hr />
       </div>
@@ -118,12 +118,12 @@ function StatBlock({ model, statSwap }) {
 
   return (
     <div className="StatBlock">
-    <DndContext onDragEnd={handleDragEnd}>
-      <Stat icon=<GiAvoidance /> model={model} stat="agility" />
-      <Stat icon=<GiPsychicWaves /> model={model} stat="presence" />
-      <Stat icon=<GiStrong /> model={model} stat="strength" />
-      <Stat icon=<GiStoneBlock /> model={model} stat="toughness" />
-    </DndContext>
+      <DndContext onDragEnd={handleDragEnd}>
+        <Stat icon=<GiAvoidance /> model={model} stat="agility" />
+        <Stat icon=<GiPsychicWaves /> model={model} stat="presence" />
+        <Stat icon=<GiStrong /> model={model} stat="strength" />
+        <Stat icon=<GiStoneBlock /> model={model} stat="toughness" />
+      </DndContext>
     </div>
   );
 }

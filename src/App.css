@@ -17,6 +17,17 @@
   color: #61dafb;
 }
 
+button {
+  padding: 8px;
+  min-height: 48px;
+  min-width: 48px;
+}
+
+.react-icons {
+  min-height: 48px;
+  min-width: 48px;
+}
+
 .Model {
   border-radius: 5px;
   border: 2px solid black;
