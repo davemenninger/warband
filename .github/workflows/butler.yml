@@ -1,0 +1,19 @@
+name: Publish to itch.io
+on:
+  push:
+    tags:
+      - v*
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: Ayowel/butler-to-itch@v1.0.0
+        with:
+          butler_key: ${{ secrets.BUTLER_CREDENTIALS }}
+          itch_user: davemenninger
+          itch_game: scvmwrangler
+          version: ${{ github.ref_name }}
+          files: "build/index.html build/robots.txt"
