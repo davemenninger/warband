@@ -9,14 +9,10 @@ function Stat({ model, stat, icon }) {
   const { isOver, setNodeRef } = useDroppable({
     id: stat_id,
   });
-  const style = {
-    color: isOver ? "green" : undefined,
-  };
 
   return (
-    <div ref={setNodeRef} style={style}>
-      {icon}
-      {stat}:{" "}
+    <div className={"Stat" + (isOver ? " isOver" : "")} ref={setNodeRef} >
+      <span>{icon}{stat}:{" "}</span>
       <StatValue
         stat_id={stat_id}
         score={stats[stat]}

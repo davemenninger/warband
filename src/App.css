@@ -18,11 +18,57 @@
 }
 
 .Model {
-  text-align: left;
+  border-radius: 5px;
+  border: 2px solid black;
+  margin: 8px;
   min-width: 300px;
+  padding: 8px;
+  text-align: left;
+}
+
+.StatBlock {
+  border-radius: 5px;
+  border: 2px solid black;
+  margin: 8px;
+  padding: 8px;
+}
+
+.Stat {
+  border-radius: 5px;
+  border: 2px solid grey;
+  box-sizing: border-box;
+  margin: 8px;
+  padding: 8px;
+  width: 75%;
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+.isOver {
+  color: cyan;
+  border: 2px solid cyan;
 }
 
 .dragHandle {
+  padding: 8px;
+  border-radius: 5px;
+  border: 2px solid grey;
+  box-shadow: 1px 1px 2px 2px black;
   float: right;
-  clear: both;
+  min-height: 48px;
+  min-width: 48px;
+}
+
+
+.dragHandle:hover {
+  box-shadow: rgba(0, 1, 0, .2) 0 2px 8px;
+  opacity: .85;
+}
+
+.dragHandle:active {
+  outline: 0;
+}
+
+.dragHandle:focus {
+  box-shadow: rgba(0, 0, 0, .5) 0 0 0 3px;
 }

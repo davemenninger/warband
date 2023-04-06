@@ -85,7 +85,6 @@ class Model extends React.Component {
       <div className="Model" key={this.state.key} id={this.state.id}>
         <div>
           <GiCharacter /> Name: {this.state.name}
-          KEY: {this.state.key}
         </div>
         <div>
           <GiHealthPotion /> HP: {this.state.hp}
@@ -118,12 +117,14 @@ function StatBlock({ model, statSwap }) {
   }
 
   return (
+    <div className="StatBlock">
     <DndContext onDragEnd={handleDragEnd}>
       <Stat icon=<GiAvoidance /> model={model} stat="agility" />
       <Stat icon=<GiPsychicWaves /> model={model} stat="presence" />
       <Stat icon=<GiStrong /> model={model} stat="strength" />
       <Stat icon=<GiStoneBlock /> model={model} stat="toughness" />
     </DndContext>
+    </div>
   );
 }
 
