@@ -7,9 +7,21 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v1
+      name: Use Node.js 16
+      with:
+        node-version: 16
+        cache: npm
+    - run: npm install
+    - run: npm ci
+    - run: npm run build --if-present
+    - name: Create Zip File
+      uses: thedoctor0/zip-release@0.7.1
+      with:
+        path: build
+        filename: scvmwrangler.zip
       - run: npm run build
       - uses: Ayowel/butler-to-itch@v1.0.0
         with:
