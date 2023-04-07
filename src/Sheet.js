@@ -5,7 +5,7 @@ import { customAlphabet } from "nanoid";
 const crockford32 = customAlphabet("0123456789ABCDEFGHJKMNPQRSTVWXYZ", 10);
 
 function Sheet() {
-  const [sheet, setSheet] = useState(
+  const [sheet, ] = useState(
     JSON.parse(localStorage.getItem("sheet")) || { id: crockford32() }
   );
   localStorage.setItem("sheet", JSON.stringify(sheet));
