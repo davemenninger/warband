@@ -18,12 +18,8 @@ jobs:
     - run: npm install
     - run: npm ci
     - run: npm run build --if-present
-    - name: Create Zip File
-      uses: thedoctor0/zip-release@0.7.1
-      with:
-        directory: "build"
-        filename: scvmwrangler.zip
+    - run: npm run dist
     - uses: ncipollo/release-action@v1
       name: Upload Zip File to GitHub
       with:
-        artifacts: scvmwrangler.zip
+        artifacts: dist/scvmwrangler.zip

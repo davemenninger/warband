@@ -1,7 +1,8 @@
 {
-  "name": "warband",
-  "version": "0.1.0",
+  "name": "scvmwrangler",
+  "version": "0.2.0",
   "private": true,
+  "homepage": ".",
   "dependencies": {
     "@dnd-kit/core": "^6.0.8",
     "@testing-library/jest-dom": "^5.16.5",
@@ -19,6 +20,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "dist": "npx zip-build --override --template \"%NAME%.%EXT%\"",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -38,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "zip-build": "^1.8.0"
   }
 }
