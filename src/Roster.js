@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { GiRollingDices } from "react-icons/gi";
 import Chance from "chance";
 import { nanoid } from "nanoid";
 import Model from "./Model.js";
@@ -28,15 +29,12 @@ function Roster() {
   return (
     <div className="Roster">
       <h3>Members</h3>
-      <button onClick={addRandomModel}>add a random member</button>
+      <button onClick={addRandomModel}>
+        <GiRollingDices />
+        add a random member
+      </button>
       {roster.map((sig) => {
-        return (
-          <Model
-            key={sig}
-            signature={sig}
-            deleteModel={deleteModel}
-          />
-        );
+        return <Model key={sig} signature={sig} deleteModel={deleteModel} />;
       })}
     </div>
   );
