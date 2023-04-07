@@ -22,8 +22,8 @@ jobs:
       with:
         path: build
         filename: scvmwrangler.zip
-      - run: npm run build
-    - uses: Ayowel/butler-to-itch@v1.0.0
+    - name: Push using Butler
+      uses: Ayowel/butler-to-itch@v1.0.0
       with:
         butler_key: ${{ secrets.BUTLER_CREDENTIALS }}
         itch_user: davemenninger
