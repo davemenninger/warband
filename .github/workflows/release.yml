@@ -12,6 +12,7 @@ jobs:
       name: Use Node.js 16
       with:
         node-version: 16
+        cache: npm
     - run: npm install
     - run: npm ci
     - run: npm run build --if-present
@@ -20,8 +21,9 @@ jobs:
       with:
         path: build
         filename: scvmwrangler.zip
-    - uses: ncipollo/release-action@v1.12.0
+    - uses: ncipollo/release-action@v1
       name: Upload Zip File to GitHub
+      permissions:
+        contents: write
       with:
         artifacts: scvmwrangler.zip
-        token: ${{ secrets.GITHUB_TOKEN }}
