@@ -29,4 +29,4 @@ jobs:
         itch_user: davemenninger
         itch_game: scvmwrangler
         version: ${{ github.ref_name }}
-        files: "scvmwrangler.zip"
+        files: "web scvmwrangler.zip"
