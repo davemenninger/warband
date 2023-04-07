@@ -17,11 +17,7 @@ jobs:
     - run: npm install
     - run: npm ci
     - run: npm run build --if-present
-    - name: Create Zip File
-      uses: thedoctor0/zip-release@0.7.1
-      with:
-        path: build
-        filename: scvmwrangler.zip
+    - run: npm run dist
     - name: Push using Butler
       uses: Ayowel/butler-to-itch@v1.0.0
       with:
@@ -29,4 +25,4 @@ jobs:
         itch_user: davemenninger
         itch_game: scvmwrangler
         version: ${{ github.ref_name }}
-        files: "web scvmwrangler.zip"
+        files: "web dist/scvmwrangler.zip"
