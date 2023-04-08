@@ -52,6 +52,10 @@ function randomModel() {
     key: signature,
     signature: signature,
     name: chance.pickone(names),
+    flaws: [],
+    feats: [],
+    injuries: [],
+    weapons: [{name: "fists"}],
     stats: {
       agility: statline[0],
       presence: statline[1],

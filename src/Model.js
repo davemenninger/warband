@@ -15,6 +15,7 @@ import {
 import { DndContext } from "@dnd-kit/core";
 
 import Stat from "./Stat.js";
+import Weapon from "./Weapon.js";
 
 class Model extends React.Component {
   state = {
@@ -31,6 +32,10 @@ class Model extends React.Component {
     hp: 0,
     move: 0,
     equipment_slots: [],
+    flaws: [],
+    feats: [],
+    injuries: [],
+    weapons: [{ name: "fists" }],
   };
 
   load() {
@@ -44,6 +49,7 @@ class Model extends React.Component {
           key: parsedState.signature,
           id: parsedState.signature,
           name: parsedState.name,
+          weapons: parsedState.weapons,
           stats: {
             agility: parsedState.stats.agility,
             presence: parsedState.stats.presence,
@@ -98,7 +104,7 @@ class Model extends React.Component {
         <StatBlock model={this} statSwap={this.statSwap} />
         <FlawsBlock model={this} />
         <FeatsBlock model={this} />
-        <WeaponsBlock model={this} />
+        <WeaponsBlock weapons={this.state.weapons} />
         <EquipmentBlock model={this} />
         <button onClick={() => this.props.deleteModel(this.props.signature)}>
           <GiExecutionerHood /> delete {this.state.name}
@@ -136,8 +142,15 @@ function FeatsBlock({ model }) {
   return <div />;
 }
 
-function WeaponsBlock({ model }) {
-  return <div />;
+function WeaponsBlock({ weapons }) {
+  return (
+    <div>
+      <h3>Weapons</h3>
+      {weapons.map((weapon) => (
+        <Weapon weapon={weapon} />
+      ))}
+    </div>
+  );
 }
 
 function EquipmentBlock({ model }) {
