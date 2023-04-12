@@ -14,6 +14,7 @@ import {
 
 import { DndContext } from "@dnd-kit/core";
 
+import EditableInput from "./EditableInput.js";
 import Stat from "./Stat.js";
 import Weapon from "./Weapon.js";
 
@@ -35,7 +36,7 @@ class Model extends React.Component {
     flaws: [],
     feats: [],
     injuries: [],
-    weapons: [{ name: "fists" }],
+    weapons: [{ name: "fists (1d1)" }],
   };
 
   load() {
@@ -90,7 +91,29 @@ class Model extends React.Component {
     return (
       <div className="Model" key={this.state.key} id={this.state.id}>
         <div>
-          <GiCharacter /> Name: {this.state.name}
+          <EditableInput
+            label={<span><GiCharacter /> Name:{" "}</span>}
+            text={this.state.name}
+            placeholder="name this model"
+            type="input"
+          >
+            <input
+              type="text"
+              name="task"
+              placeholder="name this model"
+              value={this.state.name}
+              //defaultValue={this.state.name}
+              onChange={(e) => {
+                console.log("1ran");
+                this.setState({ name: e.target.value });
+              }}
+              onBlur={(e) => {
+                console.log("2ran");
+                this.setState({ name: e.target.value });
+                this.store();
+              }}
+            />
+          </EditableInput>
         </div>
         <div>
           <GiHealthPotion /> HP: {this.state.hp}
