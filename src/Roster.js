@@ -29,13 +29,13 @@ function Roster() {
   return (
     <div className="Roster">
       <h3>Members</h3>
+      {roster.map((sig) => {
+        return <Model key={sig} signature={sig} deleteModel={deleteModel} />;
+      })}
       <button onClick={addRandomModel}>
         <GiRollingDices />
         add a random member
       </button>
-      {roster.map((sig) => {
-        return <Model key={sig} signature={sig} deleteModel={deleteModel} />;
-      })}
     </div>
   );
 }
@@ -55,7 +55,7 @@ function randomModel() {
     flaws: [],
     feats: [],
     injuries: [],
-    weapons: [{name: "fists"}],
+    weapons: [{ name: "fists" }],
     stats: {
       agility: statline[0],
       presence: statline[1],
