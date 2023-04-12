@@ -1,5 +1,11 @@
+@font-face {
+  font-family: 'JSL';
+  src: local('JSL'), url(./fonts/jancient.ttf) format('truetype');
+}
+
 .App {
   text-align: center;
+  font-family: 'JSL';
 }
 
 .App-header {
