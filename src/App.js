@@ -10,7 +10,7 @@ function App() {
       <IconContext.Provider value={{ className: "react-icons" }}>
         <header className="App-header">
           <img alt="a goblin" src="monster_football/blo goblin bruiser.png" />
-          <h1>Forbidden Psalm Warband Manager</h1>
+          <h1>SCVMWRANGLER</h1>
           <Sheet />
         </header>
         <div>{version}</div>
