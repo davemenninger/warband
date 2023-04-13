@@ -59,12 +59,12 @@ function Sheet() {
           />
         </EditableInput>
       </h2>
-      <h3>{sheet.id}</h3>
       <Roster />
       <button onClick={exportSheetToJson}>
         <BsFiletypeJson />
         export
       </button>
+      <p>WARBAND ID: {sheet.id}</p>
     </div>
   );
 }

@@ -8,8 +8,7 @@ function EditableInput({ label, text, type, placeholder, children, ...props }) {
     // Handle when key is pressed
   };
   return (
-    // TODO: style in CSS
-    <section style={{display: 'inline'}} {...props}>
+    <section className="EditableInput" {...props}>
       {isEditing ? (
         <div
           onBlur={() => setEditing(false)}

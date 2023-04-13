@@ -92,7 +92,11 @@ class Model extends React.Component {
       <div className="Model" key={this.state.key} id={this.state.id}>
         <div>
           <EditableInput
-            label={<span><GiCharacter /> Name:{" "}</span>}
+            label={
+              <span>
+                <GiCharacter /> Name:{" "}
+              </span>
+            }
             text={this.state.name}
             placeholder="name this model"
             type="input"
@@ -102,13 +106,10 @@ class Model extends React.Component {
               name="task"
               placeholder="name this model"
               value={this.state.name}
-              //defaultValue={this.state.name}
               onChange={(e) => {
-                console.log("1ran");
                 this.setState({ name: e.target.value });
               }}
               onBlur={(e) => {
-                console.log("2ran");
                 this.setState({ name: e.target.value });
                 this.store();
               }}
@@ -169,7 +170,7 @@ function WeaponsBlock({ weapons }) {
   return (
     <div>
       <h3>Weapons</h3>
-      {weapons.map((weapon) => (
+      {weapons?.map((weapon) => (
         <Weapon weapon={weapon} />
       ))}
     </div>
