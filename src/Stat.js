@@ -2,7 +2,7 @@ import { useDroppable } from "@dnd-kit/core";
 import { useDraggable } from "@dnd-kit/core";
 import { RxDragHandleDots2 } from "react-icons/rx";
 
-function Stat({ model, stat, icon }) {
+function Stat({ model, stat, icon, isLocked }) {
   const stats = model.state.stats;
 
   const stat_id = stat + "-" + model.key;
@@ -14,6 +14,7 @@ function Stat({ model, stat, icon }) {
     <div className={"Stat" + (isOver ? " isOver" : "")} ref={setNodeRef} >
       <span>{icon}{stat}:{" "}</span>
       <StatValue
+        isLocked={isLocked}
         stat_id={stat_id}
         score={stats[stat]}
       />
@@ -21,7 +22,7 @@ function Stat({ model, stat, icon }) {
   );
 }
 
-function StatValue({ stat_id, score }) {
+function StatValue({ stat_id, score, isLocked }) {
   const { attributes, listeners, setNodeRef, transform } = useDraggable({
     id: stat_id
   });
@@ -37,8 +38,8 @@ function StatValue({ stat_id, score }) {
       style={style}
       {...listeners}
       {...attributes}
-      className="dragHandle"
-      draggable={true}
+      className={isLocked ? "" : "dragHandle"}
+      draggable={!isLocked}
       id={stat_id}
       onDragOver={(ev) => ev.preventDefault()}
     >
