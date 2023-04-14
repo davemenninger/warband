@@ -1,21 +1,15 @@
 import React from "react";
 import { nanoid } from "nanoid";
 import {
-  GiAvoidance,
   GiCharacter,
   GiExecutionerHood,
   GiHealthPotion,
-  GiPsychicWaves,
-  GiStoneBlock,
-  GiStrong,
   GiVisoredHelm,
   GiWalkingBoot,
 } from "react-icons/gi";
 
-import { DndContext } from "@dnd-kit/core";
-
 import EditableInput from "./EditableInput.js";
-import Stat from "./Stat.js";
+import StatBlock from "./StatBlock.js";
 import Weapon from "./Weapon.js";
 
 class Model extends React.Component {
@@ -24,6 +18,7 @@ class Model extends React.Component {
     key: 0,
     id: 0,
     name: 0,
+    statline: [],
     stats: {
       agility: 0,
       presence: 0,
@@ -51,6 +46,7 @@ class Model extends React.Component {
           id: parsedState.signature,
           name: parsedState.name,
           weapons: parsedState.weapons,
+          statline: parsedState.statline,
           stats: {
             agility: parsedState.stats.agility,
             presence: parsedState.stats.presence,
@@ -137,25 +133,6 @@ class Model extends React.Component {
       </div>
     );
   }
-}
-
-function StatBlock({ model, statSwap }) {
-  function handleDragEnd(event) {
-    const target = event.over.id.split("-")[0];
-    const source = event.active.id.split("-")[0];
-    model.statSwap(target, source);
-  }
-
-  return (
-    <div className="StatBlock">
-      <DndContext onDragEnd={handleDragEnd}>
-        <Stat icon=<GiAvoidance /> model={model} stat="agility" />
-        <Stat icon=<GiPsychicWaves /> model={model} stat="presence" />
-        <Stat icon=<GiStrong /> model={model} stat="strength" />
-        <Stat icon=<GiStoneBlock /> model={model} stat="toughness" />
-      </DndContext>
-    </div>
-  );
 }
 
 function FlawsBlock({ model }) {

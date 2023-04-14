@@ -29,6 +29,16 @@ button {
   min-width: 48px;
 }
 
+.EditableInput {
+  border-radius: 5px;
+  border: 2px solid grey;
+  box-sizing: border-box;
+  margin: 8px;
+  padding: 8px;
+  width: 75%;
+  display: inline-flex;
+}
+
 .EditableInput:hover {
   color: cyan;
   border: dashed;

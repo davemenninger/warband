@@ -55,7 +55,8 @@ function randomModel() {
     flaws: [],
     feats: [],
     injuries: [],
-    weapons: [{ name: "fists" }],
+    weapons: [{ name: "fists (1d1)" }],
+    statline: statline,
     stats: {
       agility: statline[0],
       presence: statline[1],
